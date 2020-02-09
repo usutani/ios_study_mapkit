@@ -16,14 +16,25 @@ class ViewController: UIViewController {
     let LOC_COORD_OSAKA = CLLocationCoordinate2D(latitude: 34.702485, longitude: 135.495951)
     let LOC_COORD_KOBE = CLLocationCoordinate2D(latitude: 34.679767, longitude: 135.177994)
     
+    let LOC_COORD_KOBE_NUNOBIKI_FALLS = CLLocationCoordinate2D(latitude: 34.709692, longitude: 135.193819)
+    let LOC_COORD_KOBE_MERIKEN_PARK = CLLocationCoordinate2D(latitude: 34.682494, longitude: 135.188523)
+    let LOC_COORD_KOBE_ARIMA_ONSEN = CLLocationCoordinate2D(latitude: 34.797844, longitude: 135.247635)
+
     let COORD_SPAN = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.001)
     
     //MARK: Properties
     @IBOutlet weak var mapview: MKMapView!
     
+    var locCoordAnnotations: [CLLocationCoordinate2D] = []
+    
+    //MARK: Initialization
+    
+    //MARK Instance Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        initAnnotations()
+        addAnnotationsToMapView()
     }
     
     //MARK: Actions
@@ -41,6 +52,21 @@ class ViewController: UIViewController {
     }
     
     //MARK: Private Methods
+    
+    private func initAnnotations() {
+        locCoordAnnotations.append(LOC_COORD_KOBE_NUNOBIKI_FALLS)
+        locCoordAnnotations.append(LOC_COORD_KOBE_MERIKEN_PARK)
+        locCoordAnnotations.append(LOC_COORD_KOBE_ARIMA_ONSEN)
+    }
+    
+    private func addAnnotationsToMapView() {
+        mapview.removeAnnotations(mapview.annotations)
+        for lca in locCoordAnnotations {
+            let a = MKPointAnnotation()
+            a.coordinate = lca
+            mapview.addAnnotation(a)
+        }
+    }
     
 }
 
