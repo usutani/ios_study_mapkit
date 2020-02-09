@@ -40,6 +40,17 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: MKMapViewDelegate
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "Star"
+        var star = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        if star == nil {
+            star = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            star?.image = UIImage(named: reuseId)
+        }
+        star?.annotation = annotation
+        return star
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let a = view.annotation as? MKPointAnnotation else {
             fatalError("The view is not an instance of MKPointAnnotation.")
