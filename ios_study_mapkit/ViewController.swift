@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import os.log
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: Constants
     let LOC_COORD_KYOTO = CLLocationCoordinate2D(latitude: 34.985849, longitude: 135.758767)
@@ -37,8 +38,17 @@ class ViewController: UIViewController {
         addAnnotationsToMapView()
     }
     
-    //MARK: Actions
+    //MARK: MKMapViewDelegate
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let a = view.annotation as? MKPointAnnotation else {
+            fatalError("The view is not an instance of MKPointAnnotation.")
+        }
+        print(a.coordinate)
+    }
+    
+    //MARK: Actions
+
     @IBAction func tapKyoto(_ sender: UIButton) {
         mapview.region = MKCoordinateRegion(center: LOC_COORD_KYOTO, span: COORD_SPAN)
     }
