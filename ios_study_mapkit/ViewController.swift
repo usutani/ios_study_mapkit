@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     //MARK: Initialization
     
-    //MARK Instance Methods
+    //MARK: Instance Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
