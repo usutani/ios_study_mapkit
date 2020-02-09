@@ -18,36 +18,40 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PVb-AZ-beO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfy-qp-fuy">
-                                <rect key="frame" x="24" y="44" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Kyoto"/>
-                                <connections>
-                                    <action selector="tapKyoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YnF-t1-avR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxl-0U-jIl">
-                                <rect key="frame" x="22" y="82" width="43" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Osaka"/>
-                                <connections>
-                                    <action selector="tapOsaka:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULo-i4-98O"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvT-sg-uiE">
-                                <rect key="frame" x="24" y="120" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Kobe"/>
-                                <connections>
-                                    <action selector="tapKobe:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dzy-Wu-i68"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="scm-Id-kC4">
+                                <rect key="frame" x="24" y="44" width="43" height="106"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfy-qp-fuy">
+                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
+                                        <state key="normal" title="Kyoto"/>
+                                        <connections>
+                                            <action selector="tapKyoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YnF-t1-avR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxl-0U-jIl">
+                                        <rect key="frame" x="0.0" y="38" width="43" height="30"/>
+                                        <state key="normal" title="Osaka"/>
+                                        <connections>
+                                            <action selector="tapOsaka:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULo-i4-98O"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvT-sg-uiE">
+                                        <rect key="frame" x="0.0" y="76" width="43" height="30"/>
+                                        <state key="normal" title="Kobe"/>
+                                        <connections>
+                                            <action selector="tapKobe:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dzy-Wu-i68"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PVb-AZ-beO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6dC-jY-BJL"/>
                             <constraint firstAttribute="bottom" secondItem="PVb-AZ-beO" secondAttribute="bottom" id="KxB-wJ-XAL"/>
+                            <constraint firstItem="scm-Id-kC4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="RaS-YV-RYU"/>
                             <constraint firstItem="PVb-AZ-beO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bls-Kd-4lH"/>
+                            <constraint firstItem="scm-Id-kC4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fTP-Y4-khj"/>
                             <constraint firstItem="PVb-AZ-beO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="hP4-Ji-A6m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
