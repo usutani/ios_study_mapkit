@@ -23,7 +23,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     let LOC_COORD_KOBE_MERIKEN_PARK = CLLocationCoordinate2D(latitude: 34.682494, longitude: 135.188523)
     let LOC_COORD_KOBE_ARIMA_ONSEN = CLLocationCoordinate2D(latitude: 34.797844, longitude: 135.247635)
 
-    let COORD_SPAN = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.001)
+    let COORD_SPAN = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     
     //MARK: Properties
     @IBOutlet weak var mapview: MKMapView!
