@@ -40,6 +40,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         initAnnotations()
         addAnnotationsToMapView()
+        
+        // Show default location coordinate, Osaka.
+        mapview.region = MKCoordinateRegion(center: LOC_COORD_OSAKA, span: COORD_SPAN)
     }
     
     //MARK: MKMapViewDelegate
