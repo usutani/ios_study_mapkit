@@ -12,6 +12,8 @@ import os.log
 
 class ViewController: UIViewController, MKMapViewDelegate {
     
+    class HunterAnnotation : MKPointAnnotation {}
+    
     //MARK: Constants
     let LOC_COORD_KYOTO = CLLocationCoordinate2D(latitude: 34.985849, longitude: 135.758767)
     let LOC_COORD_OSAKA = CLLocationCoordinate2D(latitude: 34.702485, longitude: 135.495951)
@@ -28,6 +30,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     var locCoordAnnotations: [CLLocationCoordinate2D] = []
     
+    var hunterAnnotation: HunterAnnotation?
+    
     //MARK: Initialization
     
     //MARK: Instance Methods
@@ -40,15 +44,19 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: MKMapViewDelegate
     
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        hunterAnnotation?.coordinate = mapView.centerCoordinate
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId = "Star"
-        var star = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
-        if star == nil {
-            star = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            star?.image = UIImage(named: reuseId)
+        switch annotation {
+        case is HunterAnnotation:
+            return getAnnotationView(mapView, viewFor: annotation, withIdentifier: "Face")
+        case is MKPointAnnotation:
+            return getAnnotationView(mapView, viewFor: annotation, withIdentifier: "Star")
+        default:
+            return nil
         }
-        star?.annotation = annotation
-        return star
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -78,15 +86,33 @@ class ViewController: UIViewController, MKMapViewDelegate {
         locCoordAnnotations.append(LOC_COORD_KOBE_NUNOBIKI_FALLS)
         locCoordAnnotations.append(LOC_COORD_KOBE_MERIKEN_PARK)
         locCoordAnnotations.append(LOC_COORD_KOBE_ARIMA_ONSEN)
+        
+        hunterAnnotation = HunterAnnotation()
     }
     
     private func addAnnotationsToMapView() {
         mapview.removeAnnotations(mapview.annotations)
+        
         for lca in locCoordAnnotations {
             let a = MKPointAnnotation()
             a.coordinate = lca
             mapview.addAnnotation(a)
         }
+        
+        guard let h = hunterAnnotation else {
+            fatalError("hunterAnnotation is not initialized.")
+        }
+        mapview.addAnnotation(h)
+    }
+    
+    private func getAnnotationView(_ mapView: MKMapView, viewFor annotation: MKAnnotation, withIdentifier reuseId: String) -> MKAnnotationView? {
+        var av = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        if av == nil {
+            av = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            av?.image = UIImage(named: reuseId)
+        }
+        av?.annotation = annotation
+        return av
     }
     
 }
